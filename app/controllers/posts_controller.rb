@@ -1,0 +1,20 @@
+class PostsController < ApplicationController
+  def index
+    @posts = Post.all
+  end
+  
+  def show
+    @post = Post.find_by(id: params[:id])
+  end
+  
+  def new
+    @post=Post.new(content:params[:content])
+  end
+  
+  def create
+    # フォームから送信されたデータを受け取り、保存する処理を追加してください
+    @post=Post.new(content:params[:content])
+    @post.save
+    redirect_to("/posts/index")
+  end
+end
